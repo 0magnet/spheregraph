@@ -51,6 +51,8 @@ for _, c := range cells {
 - `Embed(n int, edges []Edge, p Params) []Vec3` — returns one unit vector per
   index `0..n-1`. Points with no measured edge are kept in place rather than
   dropped, so indices stay aligned with the caller's own slice.
+- `Params.Iterations` is the number of stress-majorization passes (200 by default);
+  zero leaves the points on the initial spiral.
 - `Params.Seed` makes the layout deterministic: the same input embeds the same
   way on every machine and across refreshes, which matters if several observers
   should agree on the picture.
@@ -58,6 +60,8 @@ for _, c := range cells {
   measurement cannot dominate the whole layout.
 - `Stress(pts, edges, p) float64` scores a layout; `Angle(a, b)` is the
   great-circle distance between two points.
+- `SortedByDegree(n, edges) []int` returns point indices by edge count, most
+  first, for labeling only the hubs.
 
 ### Tessellation
 
